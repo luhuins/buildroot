@@ -1,0 +1,39 @@
+From e283921cab2e2e42ea04c3f5082315c848691c70 Mon Sep 17 00:00:00 2001
+From: qblade <qblade@protonmail.com>
+Date: Sun, 4 Apr 2021 03:40:35 +0000
+Subject: [PATCH] when target's uim-module-manager is fail, use host's
+ uim-module-manager
+
+Signed-off-by: qblade <qblade@protonmail.com>
+---
+ scm/Makefile.am | 1 +
+ scm/Makefile.in | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/scm/Makefile.am b/scm/Makefile.am
+index 652286a..ae5410a 100644
+--- a/scm/Makefile.am
++++ b/scm/Makefile.am
+@@ -127,6 +127,7 @@ loader.scm: installed-modules.scm
+ installed-modules.scm: $(SCM_FILES)
+ 	$(MAKE) $(AM_MAKEFLAGS) -C $(top_builddir)/uim uim-module-manager && \
+ 	$(UIM_MODULE_MANAGER_ENV) $(UIM_MODULE_MANAGER) \
++	    --path $(top_builddir)/scm --register $(module_names) || $(UIM_MODULE_MANAGER_ENV) uim-module-manager \
+ 	    --path $(top_builddir)/scm --register $(module_names)
+ 
+ json-parser-expanded.scm: macro-expander.scm json-parser-expander.scm packrat.scm.in
+diff --git a/scm/Makefile.in b/scm/Makefile.in
+index 1241d46..dd3c4bb 100644
+--- a/scm/Makefile.in
++++ b/scm/Makefile.in
+@@ -866,6 +866,7 @@ loader.scm: installed-modules.scm
+ installed-modules.scm: $(SCM_FILES)
+ 	$(MAKE) $(AM_MAKEFLAGS) -C $(top_builddir)/uim uim-module-manager && \
+ 	$(UIM_MODULE_MANAGER_ENV) $(UIM_MODULE_MANAGER) \
++	    --path $(top_builddir)/scm --register $(module_names) || $(UIM_MODULE_MANAGER_ENV) uim-module-manager \
+ 	    --path $(top_builddir)/scm --register $(module_names)
+ 
+ json-parser-expanded.scm: macro-expander.scm json-parser-expander.scm packrat.scm.in
+-- 
+2.27.0
+

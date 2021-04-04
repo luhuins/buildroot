@@ -1,0 +1,24 @@
+config BR2_PACKAGE_UIM
+	bool "uim"
+	depends on BR2_USE_WCHAR
+	depends on BR2_ENABLE_LOCALE # runtime
+	select BR2_PACKAGE_HOST_UIM
+	help
+	  uim is a multilingual input method library and environment.
+	  Its goal is to provide simple, easily extensible and high
+	  code-quality input method development platform, and useful
+	  input method environment for users of desktop and embedded
+	  platforms.
+
+	  https://github.com/uim/uim
+
+if BR2_PACKAGE_UIM
+
+config BR2_PACKAGE_UIM_FEP
+	bool "uim-fep"
+	select BR2_PACKAGE_NCURSES
+	select BR2_PACKAGE_NCURSES_WCHAR
+	help
+	  enable uim console support
+
+endif
