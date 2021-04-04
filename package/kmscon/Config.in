@@ -1,0 +1,13 @@
+config BR2_PACKAGE_KMSCON
+	bool "kmscon"
+	depends on BR2_PACKAGE_HAS_UDEV
+	depends on BR2_TOOLCHAIN_HAS_SSP
+	select BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_LIBTSM
+	select BR2_PACKAGE_XKEYBOARD_CONFIG # keyboard layout support
+	help
+	  Kmscon is a simple terminal emulator based on linux kernel
+	  mode setting (KMS). It is an attempt to replace the in-kernel
+	  VT implementation with a userspace console.
+
+	  https://www.freedesktop.org/wiki/Software/kmscon/
