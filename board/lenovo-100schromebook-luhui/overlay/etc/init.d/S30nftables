@@ -1,0 +1,50 @@
+#!/bin/sh
+
+SERVICE_NAME="nftables"
+NFT_RULES="/etc/nftables.rule"
+START_COMMAND="nft -f $NFT_RULES"
+STOP_COMMAND="nft flush ruleset"
+
+# shellcheck source=/dev/null
+[ -r "/etc/default/$SERVICE_NAME" ] && . "/etc/default/$SERVICE_NAME"
+
+start() {
+	printf 'Starting %s: ' "$SERVICE_NAME"
+	$START_COMMAND
+	status=$?
+	if [ "$status" -eq 0 ]; then
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+	return "$status"
+}
+
+stop() {
+	printf 'Stopping %s: ' "$SERVICE_NAME"
+	$STOP_COMMAND
+	status=$?
+	if [ "$status" -eq 0 ]; then
+		rm -f "$PIDFILE"
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+	return "$status"
+}
+
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+	start|stop|restart)
+		"$1";;
+	reload)
+		# Restart, since there is no true "reload" feature.
+		restart;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+esac

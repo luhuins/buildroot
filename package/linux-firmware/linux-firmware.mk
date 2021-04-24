@@ -14,6 +14,7 @@ LINUX_FIRMWARE_CPE_ID_VENDOR = kernel
 # Intel SST DSP
 ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_INTEL_SST_DSP),y)
 LINUX_FIRMWARE_FILES += intel/fw_sst_0f28.bin-48kHz_i2s_master
+LINUX_FIRMWARE_FILES += intel/fw_sst_0f28.bin  # lenovo-100schrombook
 LINUX_FIRMWARE_ALL_LICENSE_FILES += LICENCE.fw_sst_0f28
 endif
 
