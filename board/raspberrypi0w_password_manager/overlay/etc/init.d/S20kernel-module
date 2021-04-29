@@ -1,0 +1,17 @@
+#!/bin/sh
+
+SERVICE_NAME="kernel-module"
+
+start() {
+	printf 'Starting %s: ' "$SERVICE_NAME"
+	# wifi
+	modprobe brcmfmac
+}
+
+case "$1" in
+	start)
+		"$1";;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+esac

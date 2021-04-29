@@ -1,0 +1,14 @@
+(define default-im-name 'py)
+; Contrl + / 
+(define-custom 'generic-on-key '("<Control>_")
+               '(global-keys1)
+       '(key)
+       (N_ "[Global] on")
+       (N_ "long description will be here"))
+
+(define-custom 'generic-off-key '("<Control>_")
+               '(global-keys1)
+       '(key)
+       (N_ "[Global] off")
+       (N_ "long description will be here"))
+
