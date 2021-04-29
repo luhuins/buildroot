@@ -137,3 +137,8 @@ BR2_TARGET_GRUB2_BUILTIN_MODULES="boot linux fat part_msdos part_gpt normal efi_
 # User's custom configuration
 BR2_ROOTFS_OVERLAY="board/lenovo-100schromebook-luhui/overlay/"
 
+# For Recovery
+BR2_PACKAGE_TAR=y
+BR2_PACKAGE_QEMU=y
+BR2_PACKAGE_QEMU_CUSTOM_TARGETS="x86_64-sofmmu"
+BR2_PACKAGE_QEMU_TOOLS=y
