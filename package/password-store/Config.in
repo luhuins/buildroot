@@ -1,0 +1,17 @@
+config BR2_PACKAGE_PASSWORD_STORE
+	bool "password-store"
+	select BR2_PACKAGE_BASH
+	select BR2_PACKAGE_TREE
+	select BR2_PACKAGE_GIT
+	select BR2_PACKAGE_COREUTILS
+	help
+	  Password-store is a password manager which uses
+	  GnuPG to store and retrieve passwords. The tool
+	  stores each password in its own GnuPG-encrypted
+	  file, allowing the program to be simple yet
+	  secure.  Synchronization is possible using the
+	  integrated git support, which commits changes
+	  to your password database to a git repository
+	  that can be managed through the pass command.
+
+	  https://www.passwordstore.org/
