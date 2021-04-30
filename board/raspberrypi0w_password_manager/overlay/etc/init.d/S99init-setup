@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mount -o remount,rw /
+rm /var/log
+mkdir /var/log
+rm /var/cache
+mkdir /var/cache
+rm /etc/init.d/S99init-setup
+reboot

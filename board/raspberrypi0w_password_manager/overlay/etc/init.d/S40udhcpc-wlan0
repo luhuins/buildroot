@@ -1,0 +1,25 @@
+#!/bin/sh
+
+PIDFILE="/var/run/udhcpc-wlan0.pid"
+
+case "$1" in
+  start)
+        printf "Starting udhcpc-wlan0: "
+        udhcpc -i wlan0 -b -p $PIDFILE && echo "OK" || echo "FAIL"
+        ;;
+  stop)
+        printf "Stopping udhcpc-wlan0: "
+        kill `cat $PIDFILE` && echo "OK" || echo "FAIL"
+        ;;
+  restart|reload)
+        "$0" stop
+        sleep 1
+        "$0" start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
+

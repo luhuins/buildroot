@@ -1,13 +1,11 @@
 #!/bin/sh
 
-SERVICE_NAME="kernel-module"
+SERVICE_NAME="static-ip-usb0"
 
 start() {
 	printf 'Starting %s: ' "$SERVICE_NAME"
-	# wifi
-	modprobe brcmfmac
-	# usb gadget
-	modprobe libcomposite
+	ifconfig usb0 up
+	ifconfig usb0 add 192.168.99.2
 }
 
 case "$1" in
