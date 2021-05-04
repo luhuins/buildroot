@@ -1,0 +1,6 @@
+config BR2_PACKAGE_GHID_INPUT
+	bool "ghid-input"
+	help
+	  A tool used for usb gadget hid
+
+	  https://github.com/luhuins/ghid-input
